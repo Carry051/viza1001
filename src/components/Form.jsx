@@ -2,22 +2,16 @@
 import Button from './Button';
 import noPhoto from '../assets/no-photo.png';
 import InputField from './InputField';
-import { useEffect, useState } from 'react';
+import {  useState } from 'react';
 
 const Form = () => {
-  const [files, setFiles] = useState();
-  const [previews, setPreviews] = useState([noPhoto]);
+  const [files, setFiles] = useState([noPhoto,noPhoto,noPhoto]);
 
-  // rendering previews
-  useEffect(() => {
-    if (!files) return;
-    let tmp = [];
-    for (let i = 0; i < files.length; i++) {
-      tmp.push(URL.createObjectURL(files[i]));
-    }
-    const objectUrls = tmp;
-    setPreviews(objectUrls);
-  }, [files]);
+  const getFile = (index, e) => {
+    const newFiles = [...files];
+    newFiles[index] = URL.createObjectURL(e.target.files[0]);
+    setFiles(newFiles);
+  };
 
   return (
     <form>
@@ -40,58 +34,16 @@ const Form = () => {
         </div>
 
         <div className='flex items-center gap-10  max-md:flex-col'>
-          <label htmlFor='fileInput' className='text-white text-xl  '>
-            <p className='mb-4'>Тех-паспорт сторінка 1:</p>
-            {previews && previews.map((pic, i) => <img key={i} src={pic} />)}
+        
+        {files.map((file, index) => (
+        <div key={index}>
+            <label htmlFor={`file-input-${index}`} className='text-white text-xl  '>
+            <p className='mb-4'>Тех-паспорт сторінка {index + 1}:</p>
+             <img src={file } alt="" className='  h-[200px] w-[200px] '/>
           </label>
-          <input
-            type='file'
-            id='fileInput'
-            accept='image/jpeg, image/png, image/jpg'
-            name='fileInput'
-            required
-            onChange={(e) => {
-              if (e.target.files && e.target.files.length > 0) {
-                setFiles(e.target.files);
-              }
-            }}
-            className=' hidden '
-          />
-
-          <label htmlFor='fileInput2' className='text-white text-xl  '>
-            <p className='mb-4'>Тех-паспорт сторінка 2:</p>
-            {previews && previews.map((pic, i) => <img key={i} src={pic} />)}
-          </label>
-          <input
-            type='file'
-            id='fileInput2'
-            accept='image/jpeg, image/png, image/jpg'
-            name='fileInput2'
-            required
-            onChange={(e) => {
-              if (e.target.files && e.target.files.length > 0) {
-                setFiles(e.target.files);
-              }
-            }}
-            className=' hidden '
-          />
-          <label htmlFor='fileInput3' className='text-white text-xl  '>
-            <p className='mb-4'>Тех-паспорт сторінка 3:</p>
-            {previews && previews.map((pic, i) => <img key={i} src={pic} />)}
-          </label>
-          <input
-            type='file'
-            id='fileInput3'
-            accept='image/jpeg, image/png, image/jpg'
-            name='fileInput3'
-            required
-            onChange={(e) => {
-              if (e.target.files && e.target.files.length > 0) {
-                setFiles(e.target.files);
-              }
-            }}
-            className=' hidden '
-          />
+          <input type="file" accept="image/*"  id={`file-input-${index}`} className='hidden ' onChange={(e) => getFile(index, e)} />
+        </div>
+      ))}
         </div>
       </div>
       <div className='flex justify-center '>

@@ -5,6 +5,7 @@ import Button from './Button';
 const Tariff = () => {
   const [showTarif, setShowTarif] = useState(false);
   const [clicked, setClicked] = useState(false);
+  const [selected, setSelected] = useState('Вибрати тариф') 
 
   const handleClick = () => {
     setClicked(true);
@@ -14,6 +15,11 @@ const Tariff = () => {
     }, 300);
   };
 
+ const handleSelected = (info) => {
+  setSelected(info)
+  setShowTarif(false);
+ }
+
   return (
     <div>
       <Button
@@ -22,21 +28,21 @@ const Tariff = () => {
         } ${showTarif ? 'bg-white text-[#28303d]' : 'text-white'}`}
         onClick={handleClick}
       >
-        Тарифи {showTarif ? '-' : '+'}
+         {  selected   }  {showTarif ? '-' : '+'}
       </Button>
       {showTarif && (
         <div className='absolute border-2 text-white p-2 mt-2 z-20 bg-[#28303d] '>
-          <ul className='relative '>
-            {tariffData.map((tariff) => (
-              <li
-                key={tariff.id}
-                className=' font-medium  border-b-2 last:border-b-0 py-2'
-              >
-                {tariff.day} - {tariff.price} грн
-              </li>
-            ))}
-          </ul>
-        </div>
+        <ul className='relative '>
+          {tariffData.map((tariff) => (
+            <li
+              key={tariff.id}
+              className=' font-medium  border-b-2 last:border-b-0 py-2 hover:bg-white hover:text-black cursor-pointer'
+              onClick={() => handleSelected(tariff.day)}            >
+              {tariff.day} - {tariff.price} грн
+            </li>
+          ))}
+        </ul>
+      </div>
       )}
     </div>
   );
