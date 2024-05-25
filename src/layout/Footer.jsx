@@ -1,12 +1,9 @@
 import logoNew from '../assets/logoNew.png';
 import { FaViber } from 'react-icons/fa';
-import { FaFacebook} from 'react-icons/fa';
 import { IoLogoWhatsapp } from 'react-icons/io';
 import { FaMobileScreenButton } from 'react-icons/fa6';
 import { FaMapMarkerAlt } from 'react-icons/fa';
 import { IoMailSharp } from 'react-icons/io5';
-
-
 const Footer = () => {
   return (
     <footer className='mt-40' id='contacts'>
@@ -49,12 +46,6 @@ const Footer = () => {
             <p className='flex gap-2 max-md:flex-col max-md:items-center'>
               <IoMailSharp />
               Strakhova24
-            </p>
-          </a>
-          <a href='https://www.facebook.com/vynohradiv'>
-            <p className='flex gap-2 max-md:flex-col max-md:items-center'>
-              <FaFacebook />
-              Facebook
             </p>
           </a>
         </div>
