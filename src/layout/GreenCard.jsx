@@ -55,7 +55,7 @@ const GreenCard = () => {
         <Steps />
       </div>
       <div
-        className='mt-40 flex items-center justify-between flex-wrap max-md:gap-10 max-md:justify-center'
+        className='mt-40 flex items-center  flex-wrap max-md:gap-10 max-md:justify-center'
         id='applyNow'
       >
         <h2 className='text-white text-[60px] font-extralight  max-md:text-[45px] max-md:text-center'>
@@ -63,9 +63,6 @@ const GreenCard = () => {
         </h2>
         <div>
           <Tariff />
-        </div>
-        <div>
-          <Form />
         </div>
       </div>
     </div>

@@ -1,16 +1,18 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-unescaped-entities */
 
-const InputField = ({ label, placeholder, type }) => {
+const InputField = ({ label, placeholder, type, onChange, name, value }) => {
   return (
     <div className='flex flex-col '>
       <label htmlFor='name' className='text-white text-xl mb-4'>
         {label}
       </label>
       <input
+        value={value}
+        onChange={onChange}
         type={type}
         id='name'
-        name='name'
+        name={name}
         required
         placeholder={placeholder}
         className=' px-2 max-w-[50%] py-4 rounded-md text-lg mb-10 max-md:max-w-[100%]'
